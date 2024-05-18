@@ -1,10 +1,11 @@
+import { ModeToggle } from "@/components/common/ThemeToggleBtn";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div>
-      home
-      <Button>click me</Button>
+      hello
+      <ModeToggle />
     </div>
   );
 }
