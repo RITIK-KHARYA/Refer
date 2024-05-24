@@ -3,5 +3,5 @@ type AuthStateType = {
   password?: string;
   username?: string;
   name?: string;
-  password_confirm?: string;
+  password_confirmation?: string;
 };

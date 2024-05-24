@@ -6,17 +6,23 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Register() {
   const [authState, setAuthState] = useState<AuthStateType>({
     name: "",
     username: "",
     email: "",
     password: "",
-    password_confirm: "",
+    password_confirmation: "",
   });
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
+    try {
+      axios.post("/api/auth/register", authState);
+    } catch (error) {
+      console.log(error);
+    }
     console.log("the auth state is", authState);
   };
 
@@ -30,7 +36,7 @@ export default function Register() {
           <h1 className="text-2xl font-bold">Register</h1>
           <p>Welcome To Refer!!</p>
 
-          <form onClick={submit}>
+          <form onSubmit={submit}>
             <div className="mt-5">
               <Label htmlFor="name">Name</Label>
               <Input
@@ -91,13 +97,15 @@ export default function Register() {
                 onChange={(e) => {
                   setAuthState({
                     ...authState,
-                    password_confirm: e.target.value,
+                    password_confirmation: e.target.value,
                   });
                 }}
               />
             </div>
             <div className="mt-5">
-              <Button className="w-full">Login</Button>
+              <Button className="w-full" type="submit">
+                Login
+              </Button>
             </div>
           </form>
           <div className="mt-5">
